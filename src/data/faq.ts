@@ -1,4 +1,8 @@
-export type FaqCategory = "All" | "Getting Started" | "Pricing & Guarantee" | "Pitching & Deals";
+export type FaqCategory =
+  | "All"
+  | "Getting Started"
+  | "Pitching & Deals"
+  | "Pricing & Guarantee";
 
 export interface FaqItem {
   id: string;
@@ -16,10 +20,10 @@ export interface FaqContent {
 }
 
 export const FAQ: FaqContent = {
-  eyebrow: "FAQ · ANSWERS BEFORE YOU START",
-  pageTitle: "Frequently Asked Questions",
+  eyebrow: "FAQ · QUESTIONS, ANSWERED",
+  pageTitle: "Questions, answered",
   pageSubtitle:
-    "Straight answers on starting with zero followers, filming on a phone, pricing, and how brand deals work.",
+    "Straight answers on followers, filming faceless, gear, language, schedule flexibility, and results.",
   categories: [
     "All",
     "Getting Started",
@@ -30,37 +34,58 @@ export const FAQ: FaqContent = {
     {
       id: "faq-1",
       category: "Getting Started",
-      question: "Do I need a big Instagram following to make money with UGC?",
+      question: "Do I need followers?",
       answer:
-        "No. Brands pay UGC creators to make content for their own ads and product pages—not to post to a massive audience. You can start with zero followers.",
+        "No! You don’t need any Instagram followers to become a UGC creator. Brands pay you for content which they can post on your pages.",
     },
     {
       id: "faq-2",
       category: "Getting Started",
-      question: "Can I start with just a smartphone and no camera gear?",
+      question: "Do I have to show my face?",
       answer:
-        "Yes. Modern phone cameras, natural window light, and clean framing are more than enough to film high-converting product demos, voiceovers, and lifestyle shots.",
+        "Not at all! You can create faceless UGC using product shots, hands-only videos, voiceovers and other creative formats.",
     },
     {
       id: "faq-3",
-      category: "Pitching & Deals",
-      question: "Do I have to show my face in every video?",
+      category: "Getting Started",
+      question: "Do I need a DSLR or expensive setup?",
       answer:
-        "No. Hands-only shots, unboxing, aesthetic B-roll, and voiceover videos perform very well across beauty, food, tech, home, and travel brands.",
+        "No! Your smartphone is enough to get started. You don’t need a professional camera, studio or expensive equipment.",
     },
     {
       id: "faq-4",
-      category: "Pitching & Deals",
-      question: "How do brands actually find and pay UGC creators?",
+      category: "Getting Started",
+      question: "Is the course in Hindi or English?",
       answer:
-        "Creators land deals through direct outreach (email and DMs), inbound portfolio inquiries, and repeatable pitch systems—turning one-off tests into ongoing monthly work.",
+        "The course is in simple English . The lessons are structured to make UGC easy to understand, even for complete beginners.",
     },
     {
       id: "faq-5",
-      category: "Pricing & Guarantee",
-      question: "What does enrollment include, and how does the Action Promise work?",
+      category: "Pitching & Deals",
+      question: "Can I do this as a student, homemaker or with a full-time job?",
       answer:
-        "You get lifetime access to The UGC Playbook, the exclusive lesson, included bonuses, a completion certificate, and 1:1 help under The Action Promise if you don't land a brand after 30 pitches (subject to terms).",
+        "Absolutely! UGC is flexible. You can learn, create content and pitch brands around your existing schedule.",
+    },
+    {
+      id: "faq-6",
+      category: "Pitching & Deals",
+      question: "How soon will I see results?",
+      answer:
+        "You can start building your portfolio and pitching brands as soon as you complete the relevant lessons. Your first paid collaboration depends on your skills, consistency and implementation.",
+    },
+    {
+      id: "faq-7",
+      category: "Pricing & Guarantee",
+      question: "How does the Action Promise work?",
+      answer:
+        "1:1 help if you don't land a brand after 30 pitches (T&C apply).",
+    },
+    {
+      id: "faq-8",
+      category: "Pricing & Guarantee",
+      question: "How do I get access, and is there a refund?",
+      answer:
+        "Access details and refund policy can be added here once finalized.",
     },
   ],
 };

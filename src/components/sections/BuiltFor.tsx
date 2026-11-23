@@ -117,6 +117,7 @@ export default function AboutSection({
 
   return (
     <section
+    id="built-for"
       ref={rootRef}
       aria-labelledby="about-title"
       className={cn("w-full bg-coco text-ink", className)}

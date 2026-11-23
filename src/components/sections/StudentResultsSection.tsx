@@ -31,6 +31,7 @@ export function StudentResults({
 
   return (
     <section
+    id="student-results"
       aria-labelledby="student-results-title"
       className={cn(
         "w-full border-t border-dashed border-ink/15 bg-taupe text-paper",

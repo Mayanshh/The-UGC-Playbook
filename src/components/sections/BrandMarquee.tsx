@@ -212,6 +212,7 @@ export function BrandMarquee({
 
   return (
     <section
+    id="brand-marquee"
       ref={sectionRef}
       aria-label={label}
       className={cn(

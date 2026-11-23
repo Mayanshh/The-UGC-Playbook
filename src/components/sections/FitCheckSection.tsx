@@ -60,7 +60,7 @@ function FitCard({
       className={cn(
         "rounded-3xl p-5 md:p-8 lg:p-10",
         yes
-          ? "border border-ink/10 bg-white/70 shadow-[0_30px_60px_-32px_rgba(40,25,15,0.28)]"
+          ? "border border-ink/10 bg-coco/70 shadow-[0_30px_60px_-32px_rgba(40,25,15,0.28)]"
           : "border border-dashed border-ink/25",
         className
       )}
@@ -143,10 +143,11 @@ export function FitCheck({ content = FIT_CHECK, className }: FitCheckProps) {
 
   return (
     <section
+    id="fit-check"
       ref={rootRef}
       aria-labelledby="fit-check-title"
       className={cn(
-        "relative w-full overflow-hidden border-t border-dashed border-ink/15 bg-(--bg-coco) text-ink",
+        "relative w-full overflow-hidden border-t border-dashed border-ink/15 bg-coco text-ink",
         className
       )}
     >

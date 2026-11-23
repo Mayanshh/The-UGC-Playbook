@@ -5,7 +5,6 @@ export interface NavLinkItem {
   index: string;
 }
 
-// src/data/navigation.ts
 export interface NavbarConfig {
   brand: {
     name: string;
@@ -29,17 +28,19 @@ export const NAVBAR_CONFIG: NavbarConfig = {
     href: "/",
   },
   links: [
-    { id: "work", label: "Selected Work", href: "#work", index: "01" },
-    { id: "playbook", label: "The Playbook", href: "#playbook", index: "02" },
-    { id: "services", label: "Capabilities", href: "#services", index: "03" },
-    { id: "studio", label: "Studio", href: "#studio", index: "04" },
+    { id: "about", label: "About", href: "#about", index: "01" },
+    { id: "what-is-ugc", label: "What Is UGC", href: "#what-is-ugc", index: "02" },
+    { id: "roadmap", label: "Roadmap", href: "#roadmap", index: "03" },
+    { id: "courses", label: "Courses", href: "#courses", index: "04" },
+    { id: "faq", label: "FAQ", href: "#faq", index: "05" },
   ],
   cta: {
-    label: "Start a Project",
-    href: "#contact",
+    label: "Get Playbook",
+    href: "#offer",
   },
   status: {
-    text: "Booking Q1",
+    text: "₹6,000 Offer",
     active: true,
   },
+  copyrightYear: 2026,
 };
