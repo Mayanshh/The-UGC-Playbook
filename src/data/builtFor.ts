@@ -107,8 +107,8 @@ export const ABOUT_CONTENT: AboutContent = {
       },
     ],
     cta: {
-      label: "Explore the playbook",
-      href: "#playbook",
+      label: "I want to see results myself",
+      href: "#courses",
     },
   },
 };

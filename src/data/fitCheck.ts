@@ -43,7 +43,7 @@ export const FIT_CHECK: FitCheckContent = {
   },
   closing: {
     text: "If this sounds like you, it was built for you.",
-    cta: { label: "Join The UGC Playbook · ₹6,000", href: "#playbook" },
+    cta: { label: "Join The UGC Playbook · ₹6,000", href: "#courses" },
     note: "Christmas Sale · 40% off, now ₹6,000",
   },
 };

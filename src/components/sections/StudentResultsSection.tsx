@@ -135,7 +135,7 @@ export function StudentResults({
       <ProofLightbox proofs={proofs} activeId={activeProof} onChange={setActiveProof} />
 
       <div className="flex items-start justify-start h-fit w-full pb-5 px-5 md:px-15">
-          <Button variant="solid-coco" href="#playbook">
+          <Button variant="solid-coco" href="#courses">
             I want results like these
           </Button>
       </div>

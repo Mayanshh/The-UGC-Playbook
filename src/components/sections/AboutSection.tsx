@@ -237,7 +237,7 @@ export function AboutSection({
       )}
     >
       {/* =====================================================================
-          MOBILE VIEW (< 1024px) — EXACT WIREFRAME STRUCTURE
+          MOBILE VIEW (< 1024px) — EXACT WIREFRAME STRUCTURE + PORTRAIT
       ===================================================================== */}
       <div className="mx-auto w-full max-w-md px-5 py-10 lg:hidden">
         {/* Greeting */}
@@ -248,6 +248,48 @@ export function AboutSection({
           {greeting}
         </h2>
 
+                  {/* Portrait image */}
+        <div className="mt-7">
+          <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl border border-ink/15 bg-paper">
+            {portraitSrc ? (
+              <>
+                <img
+                  src={portraitSrc}
+                  alt={portraitAlt}
+                  className="h-full w-full object-cover"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-linear-to-t from-ink/80 via-ink/35 to-transparent p-5 text-paper">
+                  <p className="font-serif text-xl font-normal tracking-tight">
+                    {portraitCaption?.name ?? "Akansha Mishra"}
+                  </p>
+                  <p className="mt-0.5 font-sans text-xs text-paper/80">
+                    {portraitCaption?.subtitle ??
+                      "Started in Uttar Pradesh with an Android phone"}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div className="flex h-full w-full flex-col justify-between p-6">
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/45">
+                  Portrait
+                </span>
+                <div>
+                  <p className="font-serif text-2xl font-normal tracking-tight text-ink/80">
+                    {portraitCaption?.name ?? "Akansha Mishra"}
+                  </p>
+                  <p className="mt-1 font-sans text-xs text-ink/55">
+                    {portraitCaption?.subtitle ??
+                      "Travel, hotel collaborations & brand storytelling"}
+                  </p>
+                </div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-umber">
+                  {portraitCaption?.badge ?? "Verified Creator"}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+        
         {/* Short paragraphs */}
         <div className="mt-5 space-y-4 font-sans text-[15px] leading-[1.55] text-ink/75">
           {paragraphs.map((text, idx) => (
@@ -271,6 +313,8 @@ export function AboutSection({
             </div>
           ))}
         </div>
+
+
 
         {/* 3 Reel videos / thumbnails */}
         <div className="mt-7 grid grid-cols-3 gap-3">

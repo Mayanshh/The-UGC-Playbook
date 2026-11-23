@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import type { HeroContent } from "@/types";
@@ -10,7 +9,10 @@ export function Hero({ content }: { content: HeroContent }) {
   const mobile = content.mobile;
 
   return (
-    <section id="hero" className="relative flex min-h-svh items-stretch overflow-hidden pb-8 pt-24 md:items-end md:pb-8 md:pt-32">
+    <section
+      id="hero"
+      className="relative flex min-h-svh items-stretch overflow-hidden pb-8 pt-6 md:items-end md:pb-8 md:pt-32"
+    >
       {/* Full-bleed Background Image (Mobile + Desktop) */}
       <div
         aria-hidden="true"
@@ -33,16 +35,16 @@ export function Hero({ content }: { content: HeroContent }) {
       </div>
 
       {/* Mobile Layout (< md) — Offer Ticker + Top Title + Bottom Grouped Subcopy, Bullets & CTA */}
-      <Container className="relative z-10 flex flex-1 flex-col justify-between gap-8 pb-2 sm:pt-8 md:hidden">
+      <Container className="relative z-10 flex flex-1 flex-col justify-between gap-12 pb-2 md:hidden">
         {/* Top Group: Offer Marquee Pill + Eyebrow + Main Serif Headline */}
-        <div className="space-y-2">
+        <div className="space-y-10 pt-4">
           {content.offer && (
             <Reveal triggerOnScroll={false} delay={0.02} y={10}>
               <OfferTicker offer={content.offer} />
             </Reveal>
           )}
 
-          <div className="space-y-3 pt-12">
+          <div className="space-y-4">
             <Reveal triggerOnScroll={false} delay={0.08} y={14}>
               <p className="font-sans text-[15px] font-medium uppercase tracking-[0.18em] text-(--bg-umber) sm:text-xs">
                 {mobile?.eyebrow ?? content.eyebrow}
@@ -58,8 +60,8 @@ export function Hero({ content }: { content: HeroContent }) {
         </div>
 
         {/* Bottom Group: Subcopy + Highlights + CTA anchored together */}
-        <div className="mb-10 space-y-5">
-          <div className="space-y-3.5">
+        <div className="mb-10 space-y-6">
+          <div className="space-y-4">
             <Reveal triggerOnScroll={false} delay={0.18} y={18}>
               <p className="font-sans text-[clamp(1rem,4.2vw,1.2rem)] font-semibold leading-snug text-(--bg-ink)">
                 {mobile?.subcopy ?? content.subcopy}
@@ -68,7 +70,7 @@ export function Hero({ content }: { content: HeroContent }) {
 
             {mobile?.highlights && mobile.highlights.length > 0 && (
               <Reveal triggerOnScroll={false} delay={0.24} y={16}>
-                <ul className="space-y-2 font-sans text-[clamp(0.875rem,3.6vw,0.975rem)] leading-snug text-(--bg-ink)">
+                <ul className="space-y-2.5 font-sans text-[clamp(0.875rem,3.6vw,0.975rem)] leading-snug text-(--bg-ink)">
                   {mobile.highlights.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
                       <span aria-hidden="true" className="mt-0.5 text-(--bg-ink)">
@@ -84,13 +86,9 @@ export function Hero({ content }: { content: HeroContent }) {
 
           <Reveal triggerOnScroll={false} delay={0.3} y={16}>
             <div className="pt-4">
-              {/* <Link
-                href={mobile?.cta.href ?? "#playbook"}
-                className="inline-flex w-fit items-center justify-center rounded-full bg-(--bg-ink) px-7 py-3.5 font-sans text-sm font-medium text-(--bg-coco) transition-colors duration-300 hover:bg-black active:scale-[0.98]"
-              >
+              <Button variant="solid-ink" href="#courses">
                 {mobile?.cta.label ?? "Join Now"}
-              </Link> */}
-              <Button variant="solid-ink" href="#playbook">{mobile?.cta.label ?? "Join Now"}</Button>
+              </Button>
             </div>
           </Reveal>
         </div>
@@ -116,7 +114,7 @@ export function Hero({ content }: { content: HeroContent }) {
             <p className="max-w-xl font-sans text-base leading-relaxed text-(--bg-ink) md:text-3xl">
               {content.subcopy}
             </p>
-            <Button variant="solid-ink" href="#playbook">Join Now</Button>
+            <Button variant="solid-ink" href="/#courses">Join Now</Button>
           </div>
         </Reveal>
       </Container>

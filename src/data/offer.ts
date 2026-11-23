@@ -22,7 +22,7 @@ export const OFFER: OfferContent = {
     "Every lesson, bonus resource, guarantee, and completion credential bundled into a single enrollment.",
   headline: "Everything you get for ₹6,000",
   ctaLabel: "Claim the Offer",
-  ctaHref: "#playbook",
+  ctaHref: "#courses",
   items: [
     {
       id: "playbook",

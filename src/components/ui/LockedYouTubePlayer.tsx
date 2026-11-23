@@ -88,11 +88,11 @@ function loadYouTubeIframeAPI(): Promise<void> {
   return ytApiPromise;
 }
 
-export type VideoOrientation = "vertical" | "horizontal";
+export type VideoOrientation = "horizontal" | "vertical";
 
 interface LockedYouTubePlayerProps {
   videoUrlOrId: string;
-  /** "vertical" (9:16 Shorts/Reels) or "horizontal" (16:9 standard) */
+  /** Always defaults to landscape "horizontal" (16:9) */
   orientation?: VideoOrientation;
   posterSrc?: string;
   posterAlt?: string;
@@ -102,7 +102,7 @@ interface LockedYouTubePlayerProps {
 
 export default function LockedYouTubePlayer({
   videoUrlOrId,
-  orientation = "vertical",
+  orientation = "horizontal",
   posterSrc,
   posterAlt = "Founder video preview",
   label = "Tap to play",
@@ -118,7 +118,7 @@ export default function LockedYouTubePlayer({
   const [isMuted, setIsMuted] = useState(false);
 
   const videoId = extractYouTubeId(videoUrlOrId);
-  const isVertical = orientation === "vertical";
+  const isLandscape = orientation !== "vertical";
 
   useEffect(() => {
     let mounted = true;
@@ -137,7 +137,6 @@ export default function LockedYouTubePlayer({
           modestbranding: 1,
           playsinline: 1,
           rel: 0,
-          showinfo: 0,
           loop: 1,
           playlist: videoId,
           origin: typeof window !== "undefined" ? window.location.origin : "",
@@ -205,11 +204,11 @@ export default function LockedYouTubePlayer({
     <div
       className={cn(
         "group relative w-full overflow-hidden bg-black select-none",
-        isVertical ? "aspect-9/16" : "aspect-video",
+        isLandscape ? "aspect-video" : "aspect-9/16",
         className
       )}
     >
-      {/* Edge-to-edge YouTube IFrame scaled just enough to hide YouTube top/bottom bar */}
+      {/* Full-bleed 16:9 YouTube IFrame with zero extra bars */}
       <div
         className={cn(
           "pointer-events-none absolute inset-0 h-full w-full transition-opacity duration-300",
@@ -218,7 +217,7 @@ export default function LockedYouTubePlayer({
       >
         <div
           id={containerId}
-          className="h-full w-full scale-[1.14] [&_iframe]:h-full [&_iframe]:w-full [&_iframe]:border-0"
+          className="h-full w-full [&_iframe]:block [&_iframe]:h-full [&_iframe]:w-full [&_iframe]:border-0"
         />
       </div>
 
@@ -228,8 +227,8 @@ export default function LockedYouTubePlayer({
           src={posterSrc}
           alt={posterAlt}
           fill
-          sizes="(min-width: 768px) 36vw, 100vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
         />
       )}
 
@@ -240,7 +239,7 @@ export default function LockedYouTubePlayer({
           onClick={handleTogglePlay}
           disabled={!isReady}
           aria-label="Play video"
-          className="absolute inset-0 z-20 flex w-full flex-col items-center justify-center bg-bone/45 px-6 text-center backdrop-blur-[1px] transition-colors duration-300 active:scale-[0.99] cursor-pointer"
+          className="absolute inset-0 z-20 flex h-full w-full flex-col items-center justify-center bg-bone/45 px-6 text-center backdrop-blur-[1px] transition-colors duration-300 active:scale-[0.99] cursor-pointer"
         >
           <span className="flex h-14 w-14 items-center justify-center rounded-full border border-umber/60 bg-paper/90 text-umber shadow-md transition-transform duration-300 group-hover:scale-105">
             <svg

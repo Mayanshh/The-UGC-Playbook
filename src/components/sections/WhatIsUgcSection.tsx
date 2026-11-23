@@ -144,9 +144,9 @@ export function WhatIsUgcSection({
               </div>
 
               <div className="overflow-x-auto rounded-2xl border border-ink/12 bg-paper/75 lg:rounded-none lg:border-0 lg:bg-transparent">
-                <table className="w-full min-w-120 border-collapse text-left">
+                <table className="w-full min-w-120 border-collapse text-left p-2">
                   <thead>
-                    <tr className="border-b-2 border-ink/20">
+                    <tr className="border-b-2 border-ink/20 px-2">
                       <th
                         scope="col"
                         className="w-[38%] py-4 pr-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink/50 lg:py-5 lg:pr-8"

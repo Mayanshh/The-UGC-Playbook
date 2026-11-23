@@ -31,7 +31,7 @@ interface AboutSectionProps {
   mobile?: AboutMobileContent;
   /** Optional desktop YouTube URL/ID override; defaults to ABOUT_CONTENT.founderVideo.videoSrc */
   desktopVideoUrl?: string;
-  /** Video orientation ("vertical" = 9:16, "horizontal" = 16:9). Defaults to "vertical". */
+  /** Video orientation ("horizontal" = 16:9 landscape, "vertical" = 9:16). Defaults to "horizontal". */
   videoOrientation?: VideoOrientation;
   className?: string;
 }
@@ -46,12 +46,12 @@ export default function AboutSection({
   imageSmall = ABOUT_CONTENT.imageSmall,
   mobile = ABOUT_CONTENT.mobile,
   desktopVideoUrl = ABOUT_CONTENT.founderVideo.videoSrc,
-  videoOrientation = "vertical",
+  videoOrientation = "horizontal",
   className,
 }: AboutSectionProps) {
   const rootRef = useRef<HTMLElement>(null);
   const resolvedVideoSrc = desktopVideoUrl ?? mobile.founderVideo.videoSrc;
-  const isVertical = videoOrientation === "vertical";
+  const isLandscape = videoOrientation !== "vertical";
 
   useGSAP(
     () => {
@@ -67,7 +67,7 @@ export default function AboutSection({
         gsap.set(frames, { clipPath: "inset(100% 0% 0% 0%)" });
         gsap.set(lines, { yPercent: 110 });
         gsap.set(fades, { opacity: 0 });
-        if (media[0]) gsap.set(media[0], { scale: 1.04 });
+        if (media[0]) gsap.set(media[0], { scale: 1 });
         if (media[1]) gsap.set(media[1], { scale: 1.2 });
 
         gsap
@@ -91,7 +91,6 @@ export default function AboutSection({
             "-=1"
           );
 
-        // Apply scroll parallax only to the secondary image frame so the video container stays exact
         if (media[1]) {
           gsap.fromTo(
             media[1],
@@ -117,13 +116,13 @@ export default function AboutSection({
 
   return (
     <section
-    id="built-for"
+      id="built-for"
       ref={rootRef}
       aria-labelledby="about-title"
       className={cn("w-full bg-coco text-ink", className)}
     >
       {/* =========================================================
-          MOBILE LAYOUT (< md) — Locked YouTube Founder Video
+          MOBILE LAYOUT (< md) — Landscape YouTube Founder Video
          ========================================================= */}
       <div className="px-5 py-12 md:hidden">
         <div className="space-y-4">
@@ -140,18 +139,18 @@ export default function AboutSection({
           </p>
         </div>
 
-        {/* Founder Video Card — Exact aspect match, zero blank space */}
+        {/* Landscape 16:9 Video Box — Exact fit, zero extra blank space */}
         <div className="mt-6">
           <div
             className={cn(
               "relative w-full overflow-hidden rounded-2xl border border-ink/15 bg-black shadow-2xs",
-              isVertical ? "aspect-9/16" : "aspect-video"
+              isLandscape ? "aspect-video" : "aspect-9/16"
             )}
           >
             {mobile.founderVideo.videoSrc ? (
               <LockedYouTubePlayer
                 videoUrlOrId={mobile.founderVideo.videoSrc}
-                orientation={videoOrientation}
+                orientation="horizontal"
                 posterSrc={mobile.founderVideo.posterSrc}
                 posterAlt={mobile.founderVideo.posterAlt}
                 label={mobile.founderVideo.label}
@@ -187,14 +186,14 @@ export default function AboutSection({
 
         {/* Mobile CTA Pill */}
         <div className="mt-6">
-          <Button variant="solid-ink" href="#playbook">
+          <Button variant="solid-ink" href="/#courses">
             {mobile?.cta.label ?? "Join Now"}
           </Button>
         </div>
       </div>
 
       {/* =========================================================
-          DESKTOP / TABLET LAYOUT (md+) — Locked YouTube Video Showcase
+          DESKTOP / TABLET LAYOUT (md+) — Landscape YouTube Showcase
          ========================================================= */}
       <div className="hidden md:block">
         <div className="flex w-full items-start justify-start px-12 py-12">
@@ -231,19 +230,19 @@ export default function AboutSection({
             </p>
           </div>
 
-          {/* Desktop Video Container — Exact 9:16 match to video, zero blank space */}
+          {/* Desktop Landscape 16:9 Video Container — Exact fit, zero extra blank space */}
           <figure
             data-frame
             className={cn(
-              "relative w-full overflow-hidden rounded-2xl bg-black md:col-span-5 md:col-start-1 md:row-span-2 md:row-start-1",
-              isVertical ? "aspect-9/16 max-w-[26rem]" : "aspect-video"
+              "relative w-full overflow-hidden rounded-2xl bg-black md:col-span-6 md:col-start-1 md:row-start-1 self-start",
+              isLandscape ? "aspect-video" : "aspect-9/16 max-w-[26rem]"
             )}
           >
-            <div data-media className="h-full w-full will-change-transform">
+            <div data-media className="h-full w-full">
               {resolvedVideoSrc ? (
                 <LockedYouTubePlayer
                   videoUrlOrId={resolvedVideoSrc}
-                  orientation={videoOrientation}
+                  orientation="horizontal"
                   posterSrc={imageLarge.src}
                   posterAlt={imageLarge.alt}
                   label={mobile.founderVideo.label}
@@ -253,7 +252,7 @@ export default function AboutSection({
                   src={imageLarge.src}
                   alt={imageLarge.alt}
                   fill
-                  sizes="(min-width: 768px) 36vw, 100vw"
+                  sizes="(min-width: 768px) 45vw, 100vw"
                   className="object-cover"
                 />
               )}

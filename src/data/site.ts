@@ -14,7 +14,7 @@ export const HERO_CONTENT: HeroContent = {
     originalPrice: "₹10,000",
     salePrice: "₹6,000",
     ctaLabel: "Claim it ↗",
-    href: "#playbook",
+    href: "#courses",
   },
   mobile: {
     eyebrow: "I BUILT A",
@@ -26,8 +26,8 @@ export const HERO_CONTENT: HeroContent = {
       "Just your phone, from home, in your own time",
     ],
     cta: {
-      label: "Join The UGC Playbook · ₹6,000",
-      href: "#playbook",
+      label: "Take Action",
+      href: "#courses",
     },
   },
 };
