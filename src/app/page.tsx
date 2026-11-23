@@ -7,6 +7,12 @@ import { FitCheck } from "@/components/sections/FitCheckSection";
 import { Curriculum } from "@/components/sections/CurriculumSection";
 import {AboutSection} from "@/components/sections/AboutSection";
 import { WhatIsUgcSection } from "@/components/sections/WhatIsUgcSection";
+import { RoadmapSection } from "@/components/sections/RoadmapSection";
+import { OfferSection } from "@/components/sections/OfferSection";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { FooterSection } from "@/components/sections/FooterSection";
+import { CoursesSection } from "@/components/sections/CoursesSection";
+import { FloatingCta } from "@/components/ui/FloatingCta";
 
 export default function HomePage() {
   return (
@@ -19,6 +25,16 @@ export default function HomePage() {
       <Curriculum />
       <AboutSection />
       <WhatIsUgcSection />
+      <RoadmapSection />
+      <CoursesSection />
+      <OfferSection />
+      <FaqSection />
+      <FooterSection />
+      <FloatingCta
+        label="Get The UGC Playbook"
+        sublabel="₹6,000 · Lifetime Access"
+        href="#offer"
+      />
     </main>
   );
 }

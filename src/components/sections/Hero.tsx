@@ -10,7 +10,7 @@ export function Hero({ content }: { content: HeroContent }) {
   const mobile = content.mobile;
 
   return (
-    <section className="relative flex min-h-svh items-stretch overflow-hidden pb-8 pt-24 md:items-end md:pb-8 md:pt-32">
+    <section id="hero" className="relative flex min-h-svh items-stretch overflow-hidden pb-8 pt-24 md:items-end md:pb-8 md:pt-32">
       {/* Full-bleed Background Image (Mobile + Desktop) */}
       <div
         aria-hidden="true"
