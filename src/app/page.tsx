@@ -6,6 +6,7 @@ import { StudentResults } from "@/components/sections/StudentResultsSection";
 import { FitCheck } from "@/components/sections/FitCheckSection";
 import { Curriculum } from "@/components/sections/CurriculumSection";
 import {AboutSection} from "@/components/sections/AboutSection";
+import { WhatIsUgcSection } from "@/components/sections/WhatIsUgcSection";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
       <StudentResults />
       <Curriculum />
       <AboutSection />
+      <WhatIsUgcSection />
     </main>
   );
 }

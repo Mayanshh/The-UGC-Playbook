@@ -62,13 +62,13 @@ export const ABOUT: AboutContent = {
     },
     {
       id: "niches",
-      value: "23+",
+      value: "100+",
       label: "Worked with",
     },
   ],
   reelsHeading: "Selected Reels & UGC Examples",
   portraitSrc:
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80",
+    "/media/images/portrait.jpg",
   portraitAlt: "Akansha Mishra — Creator behind The UGC Playbook",
   reels: [
     {
@@ -77,7 +77,7 @@ export const ABOUT: AboutContent = {
       views: "Beauty · Demo Reel",
       src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       poster:
-        "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+        "/media/images/img1.jpg",
       alt: "Beauty and skincare UGC reel example",
     },
     {
@@ -86,7 +86,7 @@ export const ABOUT: AboutContent = {
       views: "Travel · Demo Reel",
       src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
       poster:
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        "/media/images/img2.jpg",
       alt: "Travel brand collaboration UGC reel example",
     },
     {
@@ -95,7 +95,7 @@ export const ABOUT: AboutContent = {
       views: "Lifestyle · Demo Reel",
       src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       poster:
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",
+        "/media/images/img3.jpg",
       alt: "Fashion and lifestyle UGC reel example",
     },
   ],

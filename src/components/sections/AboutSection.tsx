@@ -260,7 +260,7 @@ export function AboutSection({
           {metrics.map((metric) => (
             <div
               key={metric.id}
-              className="rounded-xl border border-ink/15 bg-paper/70 px-4 py-3.5"
+              className="rounded-xl border border-ink/15 bg-transparent px-4 py-3.5"
             >
               <p className="font-sans text-lg font-bold leading-tight text-ink">
                 {metric.value}
