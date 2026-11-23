@@ -5,7 +5,7 @@ import BuiltFor from "@/components/sections/BuiltFor";
 import { StudentResults } from "@/components/sections/StudentResultsSection";
 import { FitCheck } from "@/components/sections/FitCheckSection";
 import { Curriculum } from "@/components/sections/CurriculumSection";
-import AboutSection from "@/components/sections/BuiltFor";
+import {AboutSection} from "@/components/sections/AboutSection";
 
 export default function HomePage() {
   return (

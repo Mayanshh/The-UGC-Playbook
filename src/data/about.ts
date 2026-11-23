@@ -2,7 +2,9 @@ export interface AboutReel {
   id: string;
   label?: string;
   views?: string;
+  niche?: string;
   src?: string;
+  poster?: string;
   alt?: string;
 }
 
@@ -31,41 +33,70 @@ export interface AboutContent {
 }
 
 export const ABOUT: AboutContent = {
-  greeting: "Hi, I'm Akansha Mishra.",
-  roleTag: "Creator · Pitching & Brand Partnerships",
+  greeting: "Hi, I’m Akansha Mishra.",
+  roleTag: "Creator Behind The UGC Playbook",
   eyebrowIndex: "Creator Profile · 01",
   portraitCaption: {
     name: "Akansha Mishra",
-    subtitle: "Travel, hotel collaborations & brand storytelling",
-    methodLabel: "Direct Pitching Method",
-    badge: "Verified Creator",
+    subtitle: "Started in Uttar Pradesh with an Android phone · 6-figure UGC business",
+    methodLabel: "No Huge Following Needed",
+    badge: "Hundreds of Brands",
   },
   paragraphs: [
-    "I started out sharing everyday moments and creative experiments without an agency, a big budget, or connections—just learning how to show up consistently and tell stories people genuinely connected with.",
-    "Everything shifted when I landed my first paid brand deal and realized creators don't have to wait around to get picked. By sending clear, thoughtful pitches, I turned cold outreach into travel features, hotel collaborations, and recurring brand partnerships.",
-    "I built this playbook so you have the exact scripts, structure, and confidence to pitch brands directly and turn your craft into repeatable income.",
+    "The creator behind The UGC Playbook.",
+    "A few years ago, I started creating content from my room in a small town of Uttar Pradesh, with just my Android phone. I didn’t have a professional camera, an expensive setup, industry connections or a huge Instagram following.",
+    "I was figuring everything out on my own — learning how to create content, approach brands, negotiate deals and turn a creative skill into an actual business.",
+    "Fast forward to today, I’ve worked with hundreds of national and international brands, built a full-time 6 figure business through UGC, travelled for brand collaborations and created content across fashion, beauty, lifestyle, travel and more.",
+    "And no, I didn’t have to become an influencer or build a massive following to make this happen.",
   ],
   metrics: [
     {
-      id: "ig",
-      value: "33k",
-      label: "Instagram community, verified",
-    },
-    {
-      id: "reel",
-      value: "1.7M",
-      label: "views on her top reel",
-    },
-    {
       id: "brands",
-      value: "[X]",
-      label: "brands worked with",
+      value: "33k+",
+      label: "Instagram community verified",
+    },
+    {
+      id: "business",
+      value: "1.7M",
+      label: "Views on her top reel",
+    },
+    {
+      id: "niches",
+      value: "23+",
+      label: "Worked with",
     },
   ],
-  reelsHeading: "Selected Reels & Features",
+  reelsHeading: "Selected Reels & UGC Examples",
+  portraitSrc:
+    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=80",
+  portraitAlt: "Akansha Mishra — Creator behind The UGC Playbook",
   reels: [
-    { id: "reel-1", label: "Reel thumbnail" },
-    { id: "reel-2", label: "Reel thumbnail" },
-    { id: "reel-3", label: "Reel thumbnail" },
+    {
+      id: "reel-1",
+      label: "Beauty & Skincare UGC",
+      views: "Beauty · Demo Reel",
+      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      poster:
+        "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+      alt: "Beauty and skincare UGC reel example",
+    },
+    {
+      id: "reel-2",
+      label: "Travel & Brand Collab",
+      views: "Travel · Demo Reel",
+      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      poster:
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      alt: "Travel brand collaboration UGC reel example",
+    },
+    {
+      id: "reel-3",
+      label: "Fashion & Lifestyle UGC",
+      views: "Lifestyle · Demo Reel",
+      src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      poster:
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",
+      alt: "Fashion and lifestyle UGC reel example",
+    },
   ],
 };
