@@ -138,7 +138,7 @@ export function RoadmapSection({
                       onMouseEnter={() => setActiveId(phase.id)}
                       onClick={() => setActiveId(phase.id)}
                       className={cn(
-                        "group py-9 transition-opacity duration-300 cursor-pointer",
+                        "group py-9 transition-all duration-300 cursor-pointer  hover:bg-taupe/60",
                         isActive ? "opacity-100" : "opacity-65 hover:opacity-100"
                       )}
                     >

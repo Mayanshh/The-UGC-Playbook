@@ -13,7 +13,19 @@ export function CoursesSection({
   content = COURSES,
   className,
 }: CoursesSectionProps) {
-  const { eyebrow, pageTitle, pageSubtitle, reassuranceNote, tiers } = content;
+  const {
+    eyebrow,
+    pageTitle,
+    pageSubtitle,
+    courseName,
+    headline,
+    price,
+    billingNote,
+    ctaLabel,
+    ctaHref,
+    reassuranceNote,
+    includedItems,
+  } = content;
 
   return (
     <section
@@ -50,85 +62,46 @@ export function CoursesSection({
           </header>
         </Reveal>
 
-        {/* Conversion Tier Grid */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:items-stretch lg:gap-8">
-          {tiers.map((tier, idx) => (
-            <Reveal key={tier.id} y={18} delay={Math.min(idx * 0.06, 0.2)}>
-              <article
-                className={cn(
-                  "flex h-full flex-col justify-between rounded-2xl border bg-transparent p-6 transition-colors duration-300 md:p-8 lg:p-10",
-                  tier.featured
-                    ? "border-umber ring-1 ring-umber/30"
-                    : "border-ink/15 hover:border-ink/35"
-                )}
-              >
+        {/* Single-Course Conversion Feature Layout */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start lg:gap-12 xl:gap-16">
+          {/* Left Column: Single Course Card */}
+          <div className="lg:col-span-5 lg:sticky lg:top-28">
+            <Reveal y={18}>
+              <article className="flex flex-col justify-between rounded-2xl border border-umber bg-transparent p-6 ring-1 ring-umber/30 transition-colors duration-300 hover:bg-taupe/30 md:p-8 lg:p-10">
                 <div>
-                  {/* Top Index & Edition Label */}
                   <div className="flex items-center justify-between gap-4 border-b border-ink/10 pb-4">
                     <span className="font-mono text-xs tracking-[0.24em] text-umber">
-                      EDITION {tier.code}
+                      SINGLE COURSE EDITION
                     </span>
-                    {tier.badge && (
-                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-umber">
-                        {tier.badge}
-                      </span>
-                    )}
+                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-umber">
+                      {includedItems.length} Modules &amp; Bonuses
+                    </span>
                   </div>
 
-                  {/* Course Title & Tagline */}
                   <h2 className="mt-6 font-serif text-2xl font-bold tracking-tight text-ink md:text-3xl lg:font-normal">
-                    {tier.name}
+                    {courseName}
                   </h2>
-                  <p className="mt-2.5 font-sans text-sm leading-relaxed text-ink/70">
-                    {tier.tagline}
+
+                  <p className="mt-2.5 font-sans text-sm leading-relaxed text-ink/75">
+                    {headline}
                   </p>
 
-                  {/* Price Block */}
                   <div className="mt-7 border-y border-ink/10 py-5">
-                    <div className="flex items-baseline gap-3">
-                      <span className="font-serif text-4xl font-bold tracking-tight text-ink lg:font-normal lg:text-[2.75rem]">
-                        {tier.price}
-                      </span>
-                      {tier.originalPrice && (
-                        <span className="font-mono text-xs text-ink/45 line-through">
-                          {tier.originalPrice}
-                        </span>
-                      )}
-                    </div>
+                    <span className="font-serif text-4xl font-bold tracking-tight text-ink lg:text-[2.75rem] lg:font-normal">
+                      {price}
+                    </span>
                     <p className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/55">
-                      {tier.billingNote}
+                      {billingNote}
                     </p>
                   </div>
-
-                  {/* Deliverables List */}
-                  <ul className="mt-6 space-y-3.5">
-                    {tier.deliverables.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 font-sans text-sm leading-snug text-ink/80"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-umber"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
-                {/* Conversion CTA */}
-                <div className="mt-9 pt-2">
+                <div className="mt-8">
                   <a
-                    href={tier.ctaHref}
-                    className={cn(
-                      "group flex w-full items-center justify-between rounded-full border px-6 py-3.5 font-sans text-sm font-medium transition-colors duration-300",
-                      tier.featured
-                        ? "border-ink bg-ink text-coco hover:bg-transparent hover:text-ink"
-                        : "border-ink/25 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-coco"
-                    )}
+                    href={ctaHref}
+                    className="group flex w-full items-center justify-between rounded-full border border-taupe bg-taupe px-6 py-3.5 font-sans text-sm font-medium text-coco transition-colors duration-300 hover:bg-transparent hover:text-taupe"
                   >
-                    <span>{tier.ctaLabel}</span>
+                    <span>{ctaLabel}</span>
                     <span
                       aria-hidden="true"
                       className="font-mono text-xs transition-transform duration-300 group-hover:translate-x-1"
@@ -139,7 +112,30 @@ export function CoursesSection({
                 </div>
               </article>
             </Reveal>
-          ))}
+          </div>
+
+          {/* Right Column: Course & Bonuses Breakdown */}
+          <div className="lg:col-span-7">
+            <ol className="grid grid-cols-1 gap-5">
+              {includedItems.map((item, idx) => (
+                <Reveal key={item.id} y={16} delay={Math.min(idx * 0.05, 0.2)}>
+                  <li className="rounded-2xl border border-ink/15 bg-transparent p-6 transition-colors duration-300 hover:border-ink/35 hover:bg-taupe/30 md:p-7">
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-mono text-xs tracking-[0.24em] text-umber">
+                        {item.number}
+                      </span>
+                      <h3 className="font-serif text-xl font-bold tracking-tight text-ink md:text-2xl lg:font-normal">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="mt-2.5 pl-8 font-sans text-sm leading-relaxed text-ink/75 md:text-[15px] lg:leading-[1.68]">
+                      {item.description}
+                    </p>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </div>
 
         {/* Bottom Conversion Reassurance Bar */}

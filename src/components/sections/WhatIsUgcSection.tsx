@@ -161,7 +161,7 @@ export function WhatIsUgcSection({
                       </th>
                       <th
                         scope="col"
-                        className="w-[31%] bg-umber/8 px-4 py-4 font-sans text-sm font-bold text-ink md:text-base lg:px-8 lg:py-5 lg:text-lg"
+                        className="w-[31%] bg-taupe/60 px-4 py-4 font-sans text-sm font-bold text-ink md:text-base lg:px-8 lg:py-5 lg:text-lg"
                       >
                         <span className="inline-flex items-center gap-2">
                           <span
@@ -188,7 +188,7 @@ export function WhatIsUgcSection({
                         <td className="px-4 py-4 font-sans text-sm text-ink/75 md:text-[15px] lg:px-8 lg:py-6 lg:text-base">
                           {row.influencer}
                         </td>
-                        <td className="bg-umber/8 px-4 py-4 font-sans text-sm font-semibold text-ink md:text-[15px] lg:px-8 lg:py-6 lg:text-base">
+                        <td className="bg-taupe/50 px-4 py-4 font-sans text-sm font-semibold text-ink md:text-[15px] lg:px-8 lg:py-6 lg:text-base">
                           {row.ugcCreator}
                         </td>
                       </tr>

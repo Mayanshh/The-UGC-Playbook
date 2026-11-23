@@ -299,7 +299,7 @@ export function Curriculum({
 
             {/* Exclusive Bonus Feature */}
             {exclusive && (
-              <div className="mt-16 border-l-2 border-umber pl-8">
+              <div className="mt-16 border-l-2 border-taupe pl-8">
                 <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.26em] text-umber">
                   Exclusive Bonus Lesson
                 </p>

@@ -63,7 +63,7 @@ export function OfferSection({
         <ol className="mt-10 grid grid-cols-1 gap-4 lg:mt-16 lg:grid-cols-2 lg:gap-0 lg:border-l lg:border-ink/12">
           {items.map((item, idx) => (
             <Reveal key={item.id} y={16} delay={Math.min(idx * 0.05, 0.25)}>
-              <li className="group flex h-full flex-col justify-between rounded-2xl border border-ink/15 bg-transparent p-5 transition-colors duration-300 lg:rounded-none lg:border-0 lg:border-r lg:border-b lg:border-ink/12 lg:p-10 xl:p-12 lg:hover:bg-ink/2">
+              <li className="group flex h-full flex-col justify-between rounded-2xl border border-taupe/15 bg-transparent p-5 transition-colors duration-300 lg:rounded-none lg:border-0 lg:border-r lg:border-b lg:border-ink/12 lg:p-10 xl:p-12 lg:hover:bg-taupe/30">
                 <div className="flex items-start justify-between gap-4">
                   <span className="font-mono text-xs tracking-[0.24em] text-umber lg:text-sm">
                     {pad(idx + 1)}

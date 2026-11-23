@@ -13,7 +13,7 @@ export function ExclusiveLessonCard({
   return (
     <article
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-ink/15 bg-ink p-6 text-coco shadow-xl transition-all duration-500 md:rounded-3xl md:p-10 lg:p-12 lg:hover:border-coco/25 lg:hover:shadow-2xl",
+        "group relative overflow-hidden rounded-2xl border border-ink/15 bg-taupe p-6 text-coco shadow-xl transition-all duration-500 md:rounded-3xl md:p-10 lg:p-12 lg:hover:border-coco/25 lg:hover:shadow-2xl",
         className
       )}
     >
