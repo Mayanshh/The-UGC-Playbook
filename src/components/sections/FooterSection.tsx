@@ -32,7 +32,7 @@ export function FooterSection({
     id="footer"
       aria-label="Site footer"
       className={cn(
-        "relative w-full overflow-hidden border-t border-dashed border-ink/15 bg-coco text-ink lg:border-solid lg:border-ink/10",
+        "relative w-full overflow-hidden border-t border-dashed border-ink/15 bg-taupe text-ink lg:border-solid lg:border-ink/10",
         className
       )}
     >
