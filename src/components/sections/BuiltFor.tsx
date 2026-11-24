@@ -282,7 +282,7 @@ export default function AboutSection({
                 {body}
               </p>
 
-              <Link
+              {/* <Link
                 data-fade
                 href={cta.href}
                 className="group inline-flex items-center gap-4 font-sans text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-ink md:text-base"
@@ -292,7 +292,7 @@ export default function AboutSection({
                   aria-hidden="true"
                   className="h-px w-10 bg-current transition-[width] duration-500 ease-out group-hover:w-20"
                 />
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,7 +15,7 @@ interface BrandMarqueeProps {
   brands?: BrandLogoItem[];
   /** Unified size classes applied to every logo at once */
   logoClassName?: string;
-  /** Unified slot width classes per item (defaults to ~8 items across desktop) */
+  /** Unified slot width classes per item (defaults to ~7 items across desktop) */
   slotClassName?: string;
   /** Base speed in pixels per second */
   speed?: number;
@@ -33,16 +33,217 @@ interface BrandMarqueeProps {
 const MASK =
   "linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%)";
 
+const RASTER_EXT_RE = /\.(png|jpe?g|webp|avif)(\?|#|$)/i;
+const bgRemovedCache = new Map<string, string>();
+const bgRemovedPending = new Map<string, Promise<string>>();
+
+function shouldStripBg(brand: BrandLogoItem): boolean {
+  if (brand.removeBg === false) return false;
+  if (brand.removeBg === true) return true;
+  return RASTER_EXT_RE.test(brand.logo);
+}
+
+function colorDist(
+  r1: number,
+  g1: number,
+  b1: number,
+  r2: number,
+  g2: number,
+  b2: number
+): number {
+  return Math.hypot(r1 - r2, g1 - g2, b1 - b2);
+}
+
+/**
+ * Flood-fills connected near-white / outer-border pixels from the image edges
+ * and feathers the boundary so interior shapes aren't accidentally erased.
+ */
+async function stripOuterWhiteBg(src: string): Promise<string> {
+  if (bgRemovedCache.has(src)) return bgRemovedCache.get(src)!;
+  if (bgRemovedPending.has(src)) return bgRemovedPending.get(src)!;
+
+  const task = new Promise<string>((resolve) => {
+    const img = new window.Image();
+    img.crossOrigin = "anonymous";
+
+    img.onload = () => {
+      try {
+        const w = img.naturalWidth;
+        const h = img.naturalHeight;
+        if (!w || !h) {
+          resolve(src);
+          return;
+        }
+
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d", { willReadFrequently: true });
+        if (!ctx) {
+          resolve(src);
+          return;
+        }
+
+        ctx.drawImage(img, 0, 0);
+        const imageData = ctx.getImageData(0, 0, w, h);
+        const data = imageData.data;
+
+        // Sample corners to detect the outer background color (typically near-white)
+        const corners = [
+          0,
+          (w - 1) * 4,
+          (h - 1) * w * 4,
+          ((h - 1) * w + (w - 1)) * 4,
+        ];
+        const lightCorners = corners.filter(
+          (idx) => data[idx] > 235 && data[idx + 1] > 235 && data[idx + 2] > 235
+        );
+
+        // Only strip if at least 2 corners are near-white; otherwise leave untouched
+        if (lightCorners.length < 2) {
+          resolve(src);
+          return;
+        }
+
+        const bgR =
+          lightCorners.reduce((s, idx) => s + data[idx], 0) / lightCorners.length;
+        const bgG =
+          lightCorners.reduce((s, idx) => s + data[idx + 1], 0) /
+          lightCorners.length;
+        const bgB =
+          lightCorners.reduce((s, idx) => s + data[idx + 2], 0) /
+          lightCorners.length;
+
+        const total = w * h;
+        const visited = new Uint8Array(total);
+        const toRemove = new Uint8Array(total);
+        const queue = new Int32Array(total);
+        let head = 0;
+        let tail = 0;
+
+        const hardThreshold = 28;
+        const softThreshold = 62;
+
+        const tryEnqueue = (x: number, y: number) => {
+          if (x < 0 || x >= w || y < 0 || y >= h) return;
+          const p = y * w + x;
+          if (visited[p]) return;
+          visited[p] = 1;
+
+          const i = p * 4;
+          if (data[i + 3] === 0) {
+            toRemove[p] = 1;
+            queue[tail++] = p;
+            return;
+          }
+
+          const dist = colorDist(
+            data[i],
+            data[i + 1],
+            data[i + 2],
+            bgR,
+            bgG,
+            bgB
+          );
+          if (dist <= softThreshold) {
+            toRemove[p] = 1;
+            if (dist <= hardThreshold) {
+              queue[tail++] = p;
+            }
+          }
+        };
+
+        // Seed along all 4 borders
+        for (let x = 0; x < w; x++) {
+          tryEnqueue(x, 0);
+          tryEnqueue(x, h - 1);
+        }
+        for (let y = 0; y < h; y++) {
+          tryEnqueue(0, y);
+          tryEnqueue(w - 1, y);
+        }
+
+        while (head < tail) {
+          const curr = queue[head++];
+          const cx = curr % w;
+          const cy = (curr - cx) / w;
+          tryEnqueue(cx + 1, cy);
+          tryEnqueue(cx - 1, cy);
+          tryEnqueue(cx, cy + 1);
+          tryEnqueue(cx, cy - 1);
+        }
+
+        // Apply transparency and feather fringe pixels
+        for (let p = 0; p < total; p++) {
+          if (!toRemove[p]) continue;
+          const i = p * 4;
+          const dist = colorDist(
+            data[i],
+            data[i + 1],
+            data[i + 2],
+            bgR,
+            bgG,
+            bgB
+          );
+          if (dist <= hardThreshold) {
+            data[i + 3] = 0;
+          } else {
+            const t = (dist - hardThreshold) / (softThreshold - hardThreshold);
+            data[i + 3] = Math.round(data[i + 3] * Math.min(Math.max(t, 0), 1));
+          }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+        const url = canvas.toDataURL("image/png");
+        bgRemovedCache.set(src, url);
+        resolve(url);
+      } catch {
+        resolve(src);
+      }
+    };
+
+    img.onerror = () => resolve(src);
+    img.src = src;
+  });
+
+  bgRemovedPending.set(src, task);
+  const result = await task;
+  bgRemovedPending.delete(src);
+  return result;
+}
+
 function BrandMark({
   brand,
   logoClassName,
   monochrome,
+  onReady,
 }: {
   brand: BrandLogoItem;
   logoClassName?: string;
   monochrome: boolean;
+  onReady?: () => void;
 }) {
   const [failed, setFailed] = useState(!brand.logo);
+  const [resolvedSrc, setResolvedSrc] = useState<string>(brand.logo);
+
+  useEffect(() => {
+    let active = true;
+    setFailed(!brand.logo);
+    setResolvedSrc(brand.logo);
+
+    if (brand.logo && shouldStripBg(brand)) {
+      stripOuterWhiteBg(brand.logo).then((processed) => {
+        if (active) {
+          setResolvedSrc(processed);
+          onReady?.();
+        }
+      });
+    }
+
+    return () => {
+      active = false;
+    };
+  }, [brand, onReady]);
 
   if (failed) {
     return (
@@ -52,16 +253,27 @@ function BrandMark({
     );
   }
 
+  const scale = brand.scale ?? 1;
+
   return (
     <Image
-      src={brand.logo}
+      src={resolvedSrc}
       alt={brand.name}
       width={brand.width}
       height={brand.height}
+      unoptimized={resolvedSrc.startsWith("data:")}
       draggable={false}
-      onError={() => setFailed(true)}
+      onLoad={onReady}
+      onError={() => {
+        if (resolvedSrc !== brand.logo) {
+          setResolvedSrc(brand.logo);
+        } else {
+          setFailed(true);
+        }
+      }}
+      style={scale !== 1 ? { transform: `scale(${scale})` } : undefined}
       className={cn(
-        "h-7 w-auto max-w-full select-none object-contain transition-[filter,opacity] duration-500 md:h-9",
+        "max-h-8 max-w-28 w-auto h-auto select-none object-contain transition-[filter,opacity,transform] duration-500 md:max-h-10 md:max-w-36",
         monochrome &&
           "opacity-55 brightness-0 group-hover/item:opacity-100 group-hover/item:brightness-100",
         logoClassName
@@ -79,15 +291,22 @@ export function BrandMarquee({
   reverse = false,
   pauseOnHover = true,
   scrollReactive = true,
-  monochrome = true,
+  monochrome = false,
   className,
 }: BrandMarqueeProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const passRef = useRef<HTMLDivElement>(null);
+  const loopWidthRef = useRef<number>(0);
 
   // Live motion values: tweened by GSAP, read every frame by the ticker.
   const motion = useRef({ hover: 1, dir: 1, boost: 0, skew: 0 });
+
+  const remeasureLoop = () => {
+    if (passRef.current) {
+      loopWidthRef.current = passRef.current.offsetWidth;
+    }
+  };
 
   useGSAP(
     () => {
@@ -101,13 +320,11 @@ export function BrandMarquee({
       const m = motion.current;
       const base = reverse ? 1 : -1;
       let x = 0;
-      let loop = pass.offsetWidth;
+      loopWidthRef.current = pass.offsetWidth;
       let visible = true;
 
       // One pass = one seamless loop. Re-measure when logos load or the viewport changes.
-      const ro = new ResizeObserver(() => {
-        loop = pass.offsetWidth;
-      });
+      const ro = new ResizeObserver(remeasureLoop);
       ro.observe(pass);
 
       // Don't spend frames while off-screen
@@ -120,6 +337,7 @@ export function BrandMarquee({
       io.observe(section);
 
       const tick = (_time: number, deltaMs: number) => {
+        const loop = loopWidthRef.current;
         if (!visible || loop <= 0) return;
         const dt = Math.min(deltaMs, 64) / 1000;
         x = gsap.utils.wrap(
@@ -212,7 +430,7 @@ export function BrandMarquee({
 
   return (
     <section
-    id="brand-marquee"
+      id="brand-marquee"
       ref={sectionRef}
       aria-label={label}
       className={cn(
@@ -254,8 +472,6 @@ export function BrandMarquee({
                   title={brand.name}
                   className={cn(
                     "group/item flex h-14 w-[30vw] shrink-0 items-center justify-center px-2 transition-opacity duration-500 sm:w-[20vw] md:h-20 md:w-[calc((100vw-11rem)/7)] xl:w-[calc((1440px-12rem)/7)]",
-                    // Focus one logo, quiet the rest
-                    "group-hover/track:opacity-25 group-hover/track:hover:opacity-100",
                     slotClassName
                   )}
                 >
@@ -263,6 +479,7 @@ export function BrandMarquee({
                     brand={brand}
                     logoClassName={logoClassName}
                     monochrome={monochrome}
+                    onReady={remeasureLoop}
                   />
                 </div>
               ))}
