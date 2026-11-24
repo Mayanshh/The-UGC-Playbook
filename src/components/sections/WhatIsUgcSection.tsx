@@ -42,12 +42,12 @@ export function WhatIsUgcSection({
         <Reveal y={14}>
           <header className="mb-12 border-b border-ink/15 pb-8 md:mb-16 md:pb-10 lg:mb-20 lg:pb-12">
             <div className="max-w-3xl space-y-3">
-              <div className="flex items-center gap-3">
+              {/* <div className="flex items-center gap-3">
                 <span className="hidden h-px w-8 bg-umber lg:inline-block" />
                 <p className="rounded-md border border-ink/12 bg-paper/70 px-3 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-ink/75 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:tracking-[0.24em] lg:text-umber">
                   {eyebrow}
                 </p>
-              </div>
+              </div> */}
 
               <h1
                 id="what-is-ugc-page-title"
@@ -130,7 +130,7 @@ export function WhatIsUgcSection({
           </div>
         </div>
 
-        {/* Influencer vs. UGC Creator Comparison Table */}
+        {/* Influencer vs. UGC Creator Comparison */}
         {comparison.length > 0 && (
           <Reveal y={20} delay={0.12}>
             <div className="mt-14 border-t border-ink/15 pt-10 md:mt-20 md:pt-12 lg:mt-24 lg:pt-16">
@@ -143,7 +143,46 @@ export function WhatIsUgcSection({
                 </span>
               </div>
 
-              <div className="overflow-x-auto rounded-2xl border border-ink/12 bg-paper/75 lg:rounded-none lg:border-0 lg:bg-transparent">
+              {/* Phones: one card per row. No sideways scrolling, nothing squeezed. */}
+              <ul className="flex flex-col gap-3 md:hidden">
+                {comparison.map((row) => (
+                  <li
+                    key={row.dimension}
+                    className="overflow-hidden rounded-2xl border border-ink/12 bg-paper/80"
+                  >
+                    <h3 className="px-5 pb-3 pt-5 font-sans text-base font-bold leading-snug text-ink">
+                      {row.dimension}
+                    </h3>
+
+                    <dl>
+                      <div className="border-t border-ink/10 px-5 py-4">
+                        <dt className="font-sans text-xs font-medium text-ink/55">
+                          {comparisonColumns.influencer}
+                        </dt>
+                        <dd className="mt-1.5 font-sans text-[15px] leading-relaxed text-ink/75">
+                          {row.influencer}
+                        </dd>
+                      </div>
+
+                      <div className="border-t border-ink/10 bg-taupe/50 px-5 py-4">
+                        <dt className="flex items-center gap-2 font-sans text-xs font-semibold text-ink/70">
+                          <span
+                            aria-hidden="true"
+                            className="h-1.5 w-1.5 rounded-full bg-umber"
+                          />
+                          {comparisonColumns.ugcCreator}
+                        </dt>
+                        <dd className="mt-1.5 font-sans text-[15px] font-semibold leading-relaxed text-ink">
+                          {row.ugcCreator}
+                        </dd>
+                      </div>
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Tablet and up: the original table */}
+              <div className="hidden overflow-x-auto rounded-2xl border border-ink/12 bg-paper/75 md:block lg:rounded-none lg:border-0 lg:bg-transparent">
                 <table className="w-full min-w-120 border-collapse text-left p-2">
                   <thead>
                     <tr className="border-b-2 border-ink/20 px-2">

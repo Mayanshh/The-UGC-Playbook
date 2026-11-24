@@ -27,7 +27,7 @@ export default function HomePage() {
       <WhatIsUgcSection />
       <RoadmapSection />
       <CoursesSection />
-      <OfferSection />
+      {/* <OfferSection /> */}
       <FaqSection />
       <FooterSection />
       <FloatingCta

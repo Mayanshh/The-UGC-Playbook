@@ -73,15 +73,15 @@ export const FAQ: FaqContent = {
       answer:
         "You can start building your portfolio and pitching brands as soon as you complete the relevant lessons. Your first paid collaboration depends on your skills, consistency and implementation.",
     },
+    // {
+    //   id: "faq-7",
+    //   category: "Pricing & Guarantee",
+    //   question: "How does the Action Promise work?",
+    //   answer:
+    //     "1:1 help if you don't land a brand after 30 pitches (T&C apply).",
+    // },
     {
       id: "faq-7",
-      category: "Pricing & Guarantee",
-      question: "How does the Action Promise work?",
-      answer:
-        "1:1 help if you don't land a brand after 30 pitches (T&C apply).",
-    },
-    {
-      id: "faq-8",
       category: "Pricing & Guarantee",
       question: "How do I get access, and is there a refund?",
       answer:

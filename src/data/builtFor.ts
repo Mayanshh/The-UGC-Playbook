@@ -6,8 +6,9 @@ export interface AboutImage {
 export interface FounderVideo {
   label: string;
   durationLabel: string;
-  posterSrc: string;
-  posterAlt: string;
+  /** Optional. When omitted, the YouTube video's own thumbnail is used as the poster. */
+  posterSrc?: string;
+  posterAlt?: string;
   /** Accepts any YouTube URL (watch, shorts, youtu.be) or 11-char video ID */
   videoSrc?: string;
 }
@@ -55,8 +56,6 @@ const FOUNDER_YOUTUBE_URL = "https://www.youtube.com/watch?v=FBC6Q1Ptn_g";
 const SHARED_FOUNDER_VIDEO: FounderVideo = {
   label: "Tap to play",
   durationLabel: "60 to 90 sec, vertical",
-  posterSrc: "/media/images/img9.jpg",
-  posterAlt: "Founder vertical video preview",
   videoSrc: FOUNDER_YOUTUBE_URL,
 };
 

@@ -122,7 +122,7 @@ export default function AboutSection({
       className={cn("w-full bg-coco text-ink", className)}
     >
       {/* =========================================================
-          MOBILE LAYOUT (< md) — Landscape YouTube Founder Video
+          MOBILE LAYOUT (< md) — Landscape Founder Video
          ========================================================= */}
       <div className="px-5 py-12 md:hidden">
         <div className="space-y-4">
@@ -155,15 +155,15 @@ export default function AboutSection({
                 posterAlt={mobile.founderVideo.posterAlt}
                 label={mobile.founderVideo.label}
               />
-            ) : (
+            ) : mobile.founderVideo.posterSrc ? (
               <Image
                 src={mobile.founderVideo.posterSrc}
-                alt={mobile.founderVideo.posterAlt}
+                alt={mobile.founderVideo.posterAlt ?? ""}
                 fill
                 sizes="100vw"
                 className="object-cover"
               />
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -193,7 +193,7 @@ export default function AboutSection({
       </div>
 
       {/* =========================================================
-          DESKTOP / TABLET LAYOUT (md+) — Landscape YouTube Showcase
+          DESKTOP / TABLET LAYOUT (md+) — Landscape Video Showcase
          ========================================================= */}
       <div className="hidden md:block">
         <div className="flex w-full items-start justify-start px-12 py-12">
@@ -243,8 +243,6 @@ export default function AboutSection({
                 <LockedYouTubePlayer
                   videoUrlOrId={resolvedVideoSrc}
                   orientation="horizontal"
-                  posterSrc={imageLarge.src}
-                  posterAlt={imageLarge.alt}
                   label={mobile.founderVideo.label}
                 />
               ) : (

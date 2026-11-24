@@ -55,11 +55,11 @@ export const ABOUT: AboutContent = {
       value: "33k+",
       label: "Instagram community verified",
     },
-    {
-      id: "business",
-      value: "1.7M",
-      label: "Views on her top reel",
-    },
+    // {
+    //   id: "business",
+    //   value: "1.7M",
+    //   label: "Views on her top reel",
+    // },
     {
       id: "niches",
       value: "100+",
