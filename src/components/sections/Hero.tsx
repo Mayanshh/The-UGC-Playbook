@@ -52,7 +52,7 @@ export function Hero({ content }: { content: HeroContent }) {
             </Reveal>
 
             <Reveal triggerOnScroll={false} delay={0.14} y={24}>
-              <h1 className="font-serif text-[clamp(2.6rem,8.8vw,3.15rem)] font-bold leading-[1.06] tracking-tight text-(--bg-ink)">
+              <h1 className="font-serif text-[clamp(1.8rem,8.8vw,3.15rem)] font-bold uppercase leading-[1.06] tracking-tight text-(--bg-ink)">
                 {mobile?.headline ?? content.headline}
               </h1>
             </Reveal>
