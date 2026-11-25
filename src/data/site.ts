@@ -2,7 +2,7 @@ import type { HeroContent } from "@/types";
 
 export const HERO_CONTENT: HeroContent = {
   eyebrow: "I built a",
-  headline: "7-figure, freedom based business",
+  headline: "7-figure, freedom-based business",
   subcopy: "Now I'm teaching you the exact system in The UGC Playbook.",
   backgroundImage: {
     src: "/media/images/home.jpg",
@@ -17,7 +17,7 @@ export const HERO_CONTENT: HeroContent = {
     href: "#courses",
   },
   mobile: {
-    eyebrow: "I built a",
+    eyebrow: "I BUILT A",
     headline: "7 figure, freedom based business creating content brands actually pay for.",
     subcopy: "Now I'm teaching you the exact system in The UGC Playbook.",
     highlights: [

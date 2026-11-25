@@ -44,9 +44,9 @@ export function Hero({ content }: { content: HeroContent }) {
             </Reveal>
           )}
 
-          <div className="space-y-2">
+          <div className="space-y-4">
             <Reveal triggerOnScroll={false} delay={0.08} y={14}>
-              <p className="font-sans  font-medium tracking-tight text-(--bg-umber)/70 text-xl">
+              <p className="font-sans text-[15px] font-medium uppercase tracking-[0.18em] text-(--bg-umber) sm:text-xs">
                 {mobile?.eyebrow ?? content.eyebrow}
               </p>
             </Reveal>
@@ -96,9 +96,9 @@ export function Hero({ content }: { content: HeroContent }) {
 
       {/* Desktop / Laptop Layout (md+) — Unchanged */}
       <Container className="relative z-10 hidden md:block">
-        <div className="max-w-4xl space-y-2">
+        <div className="max-w-4xl space-y-6">
           <Reveal triggerOnScroll={false} delay={0.05} y={16}>
-            <p className="font-sans text-3xl font-medium tracking-tight text-(--bg-ink)/60">
+            <p className="font-sans text-md font-medium uppercase tracking-[0.2em] text-(--bg-ink)">
               {content.eyebrow}
             </p>
           </Reveal>
