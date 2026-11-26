@@ -62,7 +62,7 @@ const SHARED_FOUNDER_VIDEO: FounderVideo = {
 export const ABOUT_CONTENT: AboutContent = {
   eyebrow: "Story",
   title: ["Learn the exact", "UGC system inside."],
-  subtitle: "Build for creators who create content right from home.",
+  subtitle: "Built for creators who create content right from home.",
   body: "We work with a small number of founders and teams each year. Every project starts by removing what does not matter, then giving what remains the time, space and craft it deserves. The result is work that feels calm, clear and unmistakably yours.",
   cta: {
     label: "Read our story",
@@ -79,7 +79,7 @@ export const ABOUT_CONTENT: AboutContent = {
   },
   mobile: {
     eyebrow: "THE STORY BEHIND THE PLAYBOOK",
-    headline: "Build for creators who create content right from home.",
+    headline: "Built for creators who create content right from home.",
     subcopy:
       "You don't need studio lighting, fancy cameras, or a massive following to get brands to pay for your content.",
     founderVideo: SHARED_FOUNDER_VIDEO,

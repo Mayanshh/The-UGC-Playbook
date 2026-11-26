@@ -26,7 +26,7 @@ export const HERO_CONTENT: HeroContent = {
       "Just your phone, from home, in your own time",
     ],
     cta: {
-      label: "Take Action",
+      label: "Start Today",
       href: "#courses",
     },
   },
