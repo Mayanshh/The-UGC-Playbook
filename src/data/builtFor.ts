@@ -61,8 +61,8 @@ const SHARED_FOUNDER_VIDEO: FounderVideo = {
 
 export const ABOUT_CONTENT: AboutContent = {
   eyebrow: "Story",
-  title: ["Design with less noise,", "made to last."],
-  subtitle: "An independent studio for brands that want to be remembered.",
+  title: ["Learn the exact", "UGC system inside."],
+  subtitle: "Build for creators who create content right from home.",
   body: "We work with a small number of founders and teams each year. Every project starts by removing what does not matter, then giving what remains the time, space and craft it deserves. The result is work that feels calm, clear and unmistakably yours.",
   cta: {
     label: "Read our story",

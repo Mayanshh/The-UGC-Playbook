@@ -258,7 +258,7 @@ export default function AboutSection({
           </figure>
 
           {/* Small image + paragraph + CTA */}
-          <div className="grid grid-cols-1 items-end gap-12 sm:grid-cols-2 sm:gap-8 md:col-span-6 md:col-start-7 md:row-start-2 lg:gap-12">
+          {/* <div className="grid grid-cols-1 items-end gap-12 sm:grid-cols-2 sm:gap-8 md:col-span-6 md:col-start-7 md:row-start-2 lg:gap-12">
             <figure
               data-frame
               className="relative aspect-[4/5] w-full max-w-[22rem] overflow-hidden bg-ink/5"
@@ -281,20 +281,8 @@ export default function AboutSection({
               >
                 {body}
               </p>
-
-              {/* <Link
-                data-fade
-                href={cta.href}
-                className="group inline-flex items-center gap-4 font-sans text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-ink md:text-base"
-              >
-                <span>{cta.label}</span>
-                <span
-                  aria-hidden="true"
-                  className="h-px w-10 bg-current transition-[width] duration-500 ease-out group-hover:w-20"
-                />
-              </Link> */}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
