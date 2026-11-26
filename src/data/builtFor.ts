@@ -79,7 +79,7 @@ export const ABOUT_CONTENT: AboutContent = {
   },
   mobile: {
     eyebrow: "THE STORY BEHIND THE PLAYBOOK",
-    headline: "Built for real creators shooting from everyday rooms.",
+    headline: "Build for creators who create content right from home.",
     subcopy:
       "You don't need studio lighting, fancy cameras, or a massive following to get brands to pay for your content.",
     founderVideo: SHARED_FOUNDER_VIDEO,

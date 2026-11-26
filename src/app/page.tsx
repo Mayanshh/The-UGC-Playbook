@@ -8,7 +8,7 @@ import { Curriculum } from "@/components/sections/CurriculumSection";
 import {AboutSection} from "@/components/sections/AboutSection";
 import { WhatIsUgcSection } from "@/components/sections/WhatIsUgcSection";
 import { RoadmapSection } from "@/components/sections/RoadmapSection";
-import { OfferSection } from "@/components/sections/OfferSection";
+// import { OfferSection } from "@/components/sections/OfferSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FooterSection } from "@/components/sections/FooterSection";
 import { CoursesSection } from "@/components/sections/CoursesSection";
