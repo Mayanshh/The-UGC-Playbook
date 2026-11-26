@@ -87,7 +87,7 @@ export function Hero({ content }: { content: HeroContent }) {
           <Reveal triggerOnScroll={false} delay={0.3} y={16}>
             <div className="pt-4">
               <Button variant="solid-ink" href="#courses">
-                {mobile?.cta.label ?? "Join Now"}
+                {mobile?.cta.label ?? "Start Today"}
               </Button>
             </div>
           </Reveal>
@@ -114,7 +114,7 @@ export function Hero({ content }: { content: HeroContent }) {
             <p className="max-w-xl font-sans text-base leading-relaxed text-(--bg-ink) md:text-3xl">
               {content.subcopy}
             </p>
-            <Button variant="solid-ink" href="/#courses">Join Now</Button>
+            <Button variant="solid-ink" href="/#courses">Start Today</Button>
           </div>
         </Reveal>
       </Container>

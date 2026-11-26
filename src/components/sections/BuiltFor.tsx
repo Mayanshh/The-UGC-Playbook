@@ -187,7 +187,7 @@ export default function AboutSection({
         {/* Mobile CTA Pill */}
         <div className="mt-6">
           <Button variant="solid-ink" href="/#courses">
-            {mobile?.cta.label ?? "Join Now"}
+            {mobile?.cta.label ?? "Start Today"}
           </Button>
         </div>
       </div>
